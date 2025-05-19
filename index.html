@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>আমার পোর্টফোলিও</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      background: #f9f9f9;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #34495e;
+    }
+    .nav-link {
+      color: white;
+      padding: 1rem;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      background-color: #2c3e50;
+    }
+    section {
+      padding: 2rem;
+    }
+    .project-item {
+      cursor: pointer;
+      background-color: #ecf0f1;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 5px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 5px;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>মুহাম্মাদ আব্দুল্লাহর পোর্টফোলিও</h1>
+  </header>
+
+  <nav>
+    <a href="#education" class="nav-link">শিক্ষাগত যোগ্যতা</a>
+    <a href="#skills" class="nav-link">দক্ষতা</a>
+    <a href="#projects" class="nav-link">প্রকল্প</a>
+    <a href="#extra-curricular" class="nav-link">এক্সট্রা কারিকুলার অ্যাক্টিভিটিজ</a>
+  </nav>
+
+  <section id="education">
+    <h2>শিক্ষাগত যোগ্যতা</h2>
+    <ul>
+      <li>অনার্স ১ম বর্ষ, অর্থনীতি বিভাগ, চট্টগ্রাম কলেজ</li>
+      <li>আলিম, বায়তুশ শরফ, জিপিএ: ৪.৫৭</li>
+      <li>দাখিল, কাট্টলী জাকেরুল উলুম ফাজিল মাদ্রাসা, জিপিএ: ৪.৮৮</li>
+      <li>জেডিসি, ২০১৭, জিপিএ: ৪.৭৮</li>
+      <li>ইবতেদায়ি, ২০১৪, জিপিএ: ৪.৩৩</li>
+    </ul>
+  </section>
+
+  <section id="skills">
+    <h2>দক্ষতা</h2>
+    <ul>
+      <li>MS Word</li>
+      <li>HTML</li>
+      <li>মোবাইল গ্রাফিক্স</li>
+      <li>আরবি ও ইংরেজিতে প্রাথমিক ভাষাজ্ঞান</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>প্রকল্প</h2>
+    <div class="project-item" data-title="মুসলিম শিক্ষাবিদ" data-details="এই প্রকল্পের মাধ্যমে আমরা শিক্ষা বিষয়ক কার্যক্রম পরিচালনা করে থাকি।">
+      মুসলিম শিক্ষাবিদ
+    </div>
+    <div class="project-item" data-title="আলোড়ন" data-details="আলোরণ একটি স্টুডেন্ট ওয়েল ফেয়ার প্লাটফর্ম।">
+      আলোড়ন
+    </div>
+  </section>
+
+  <section id="extra-curricular">
+    <h2>এক্সট্রা কারিকুলার অ্যাক্টিভিটিজ</h2>
+    <ul>
+      <li>সাংস্কৃতিক সম্পাদক, আল আকসা সোশ্যাল অর্গানাইজেশন (২০২০-২১)</li>
+      <li>সদস্য, নিরুপম কালচারাল একাডেমি (২০১৮-২১)</li>
+      <li>সদস্য, পারাবার শিল্পীগোষ্ঠী (২০২১-২২)</li>
+      <li>উইকিপিডিয়ায় অবদানকারী</li>
+    </ul>
+  </section>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const closeBtn = modal.querySelector('.close-btn');
+
+    document.querySelectorAll('.project-item').forEach(item => {
+      item.addEventListener('click', () => {
+        modalTitle.textContent = item.dataset.title;
+        modalDesc.textContent = item.dataset.details;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+
+    window.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+</body>
+</html>
